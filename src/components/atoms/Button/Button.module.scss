@@ -1,0 +1,28 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.button {
+  @include button-text;
+  padding: $space-3 $space-4;
+  border: 2px solid $color-primary;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+
+  &:focus-visible { @include focus-ring; }
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  &--primary {
+    background: $color-primary;
+    color: $color-surface;
+
+    &:hover:not(:disabled) { background: $color-primary-hover; border-color: $color-primary-hover; }
+  }
+
+  &--secondary {
+    background: transparent;
+    color: $color-primary;
+
+    &:hover:not(:disabled) { background: $color-primary; color: $color-surface; }
+  }
+}

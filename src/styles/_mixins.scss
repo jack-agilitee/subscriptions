@@ -1,0 +1,34 @@
+@use 'variables' as *;
+
+// Headings
+@mixin heading-1 { font-size: 32px; line-height: 1.25; font-weight: $font-weight-bold; }
+@mixin heading-2 { font-size: 24px; line-height: 1.3; font-weight: $font-weight-semibold; }
+@mixin heading-3 { font-size: 18px; line-height: 1.4; font-weight: $font-weight-semibold; }
+
+// Body
+@mixin body-large { font-size: 18px; line-height: 1.6; }
+@mixin body-medium { font-size: 16px; line-height: 1.5; }
+@mixin body-small { font-size: 14px; line-height: 1.45; }
+
+// Special text
+@mixin label { font-size: 12px; font-weight: $font-weight-medium; letter-spacing: 0.02em; text-transform: uppercase; }
+@mixin button-text { font-size: 14px; font-weight: $font-weight-semibold; line-height: 1; }
+
+// Weights
+@mixin font-medium { font-weight: $font-weight-medium; }
+@mixin font-semibold { font-weight: $font-weight-semibold; }
+@mixin font-bold { font-weight: $font-weight-bold; }
+
+// Colors
+@mixin text-primary { color: $color-text-primary; }
+@mixin text-secondary { color: $color-text-secondary; }
+
+// Utilities
+@mixin truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@mixin line-clamp($lines) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+@mixin focus-ring { outline: 2px solid $color-primary; outline-offset: 2px; }

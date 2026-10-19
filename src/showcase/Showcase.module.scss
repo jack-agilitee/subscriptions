@@ -1,0 +1,38 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.showcase {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: $space-8 $space-4;
+
+  &__header { margin-bottom: $space-8; }
+  &__title { @include heading-1; margin: 0 0 $space-2; }
+  &__subtitle { @include body-medium; @include text-secondary; margin: 0; }
+
+  &__section {
+    background: $color-surface;
+    border: 1px solid $color-border;
+    border-radius: $radius-lg;
+    box-shadow: $shadow-card;
+    padding: $space-6;
+    margin-bottom: $space-6;
+  }
+
+  &__section-header {
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+    margin-bottom: $space-4;
+  }
+
+  &__section-title { @include heading-3; margin: 0; }
+  &__level { @include label; @include text-secondary; }
+
+  &__demo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: $space-3;
+  }
+}
