@@ -1,0 +1,214 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.membership-radio-card-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-4;
+  width: 100%;
+  max-width: 343px;
+  padding: $space-4 0 $space-2;
+  font-family: $font-family-base;
+
+  &__trial {
+    display: flex;
+    align-items: baseline;
+    gap: $space-1;
+    width: 100%;
+    margin: 0;
+    line-height: $line-height-tight;
+  }
+
+  &__trial-text {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    color: $color-text-primary;
+  }
+
+  &__trial-subtext {
+    font-size: $font-size-2xs;
+    font-weight: $font-weight-regular;
+    color: $color-text-subdued;
+  }
+
+  &__options {
+    display: flex;
+    align-items: center;
+    gap: $space-4;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    min-inline-size: 0;
+  }
+
+  &__legend {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  // Unselected cards use a 1px border, selected 2px; padding compensates so size never shifts.
+  &__card {
+    position: relative;
+    display: flex;
+    flex: 1 0 0;
+    align-items: center;
+    gap: $space-2;
+    min-width: 0;
+    padding: calc(#{$space-3} + 1px);
+    background: $color-surface;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    cursor: pointer;
+    transition: border-color 0.15s;
+
+    &:hover { border-color: $color-text-secondary; }
+
+    &:has(:focus-visible) { @include focus-ring; outline-color: $color-link; }
+
+    &--selected {
+      padding: $space-3;
+      border: 2px solid $color-text-primary;
+      box-shadow: $shadow-soft;
+
+      &:hover { border-color: $color-text-primary; }
+    }
+  }
+
+  &__input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+    pointer-events: none;
+  }
+
+  &__details {
+    display: flex;
+    flex: 1 0 0;
+    flex-direction: column;
+    gap: $space-1;
+    min-width: 0;
+  }
+
+  &__name {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    line-height: $line-height-base;
+    color: $color-text-subdued;
+
+    .membership-radio-card-group__card--selected & { color: $color-text-primary; }
+  }
+
+  &__price {
+    display: flex;
+    align-items: baseline;
+    line-height: normal;
+    color: $color-text-primary;
+  }
+
+  &__amount {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+  }
+
+  &__period {
+    font-size: $font-size-2xs;
+    font-weight: $font-weight-medium;
+    line-height: $line-height-tight;
+  }
+
+  &__note {
+    font-size: $font-size-xs;
+    line-height: $line-height-xs;
+    white-space: nowrap;
+
+    &--highlight {
+      font-weight: $font-weight-bold;
+      color: $color-link;
+    }
+
+    &--muted {
+      font-weight: $font-weight-medium;
+      color: $color-text-secondary;
+    }
+  }
+
+  // Matches the Figma Radio SVG: r=10 ring (1px idle / 2px selected) with a 14px dot when selected.
+  &__radio {
+    position: relative;
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &::before {
+      width: 21px;
+      height: 21px;
+      background: $color-surface;
+      border: 1px solid $color-text-primary;
+    }
+
+    .membership-radio-card-group__card--selected &::before {
+      width: 22px;
+      height: 22px;
+      border-width: 2px;
+    }
+
+    .membership-radio-card-group__card--selected &::after {
+      width: 14px;
+      height: 14px;
+      background: $color-text-primary;
+    }
+  }
+
+  &__badge {
+    position: absolute;
+    top: -12px;
+    right: 9.5px;
+    display: flex;
+    align-items: center;
+    height: 20px;
+    padding: $space-0-5 $space-1-5;
+    background: $color-brand;
+    border: 2px solid $color-text-primary;
+    border-radius: $radius-full;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-xs;
+    color: $color-text-primary;
+    white-space: nowrap;
+  }
+
+  &__link {
+    width: 100%;
+    padding: 0;
+    background: none;
+    border: 0;
+    font-family: inherit;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    line-height: $line-height-xs;
+    color: $color-link;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover { text-decoration: underline; }
+    &:focus-visible { @include focus-ring; outline-color: $color-link; }
+  }
+}

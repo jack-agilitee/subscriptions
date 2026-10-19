@@ -8,9 +8,12 @@ This file provides context and instructions for Claude Code to help with this pr
 - Project Name: Subscriptions Components
 - Purpose: Component showcase for the subscriptions project (no backend, no routing)
 - Working Directory: /Users/jack/Documents/Projects/subscriptions
+- Repository: https://github.com/jack-agilitee/subscriptions (private; use the `jack-agilitee` gh account)
+- Design Source: Figma "🐯 Agilitee Tiger Team for MCP" (file key `jyoCsqRduPNMzwSRkyFcR6`, use the jack@agilitee.com Figma account)
 - Build Tool: Vite 8
 - Framework: React 19 (JavaScript / JSX)
 - Styling: SCSS (Dart Sass) with CSS Modules and BEM methodology
+- Font: Montserrat (Google Fonts, loaded in `index.html`)
 - Testing: Vitest + React Testing Library (jsdom)
 - Linting: oxlint
 - Component Style: Functional components with React hooks only
@@ -48,6 +51,7 @@ Before creating any pull request, run ALL commands in order:
 
 ## File Structure
 ```
+docs/               # One markdown doc per component (props, usage, Figma link)
 src/
   components/
     atoms/          # Basic blocks (Button, Badge, Input)
@@ -96,7 +100,7 @@ components/atoms/Button/
   @use '../../../styles/variables' as *;
   @use '../../../styles/mixins' as *;
   ```
-- **Never hardcode colors, fonts or spacing**: use variables and mixins. Add new tokens to `_variables.scss`
+- **Never hardcode colors, fonts or spacing**: use variables and mixins. Add new tokens to `_variables.scss`, marking ones that mirror Figma variables with `// (Figma) <token/name>`
 - **Prefer CSS pseudo-selectors** over JavaScript hover handlers
 - Use `color.adjust()` / `color.scale()` from `sass:color` instead of the deprecated `darken()` / `lighten()`
 
@@ -154,5 +158,5 @@ export default Button
 ## Important Rules
 1. **Functional components only**: no classes
 2. **No hardcoded colors/fonts/spacing** in SCSS
-3. **Every component gets a showcase entry and a test**
+3. **Every component gets a showcase entry, a test and a doc in `docs/`**
 4. **Run lint, test, and build** before creating PRs
