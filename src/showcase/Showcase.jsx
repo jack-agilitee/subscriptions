@@ -1,5 +1,34 @@
+import { useState } from 'react'
 import Button from '../components/atoms/Button'
+import MembershipRadioCardGroup from '../components/molecules/MembershipRadioCardGroup'
 import styles from './Showcase.module.scss'
+
+const membershipPlans = [
+  { id: 'annual', label: 'Annual', price: '$97', period: '/year', note: 'Save $46.88', noteTone: 'highlight', badge: 'best value' },
+  { id: 'monthly', label: 'Monthly', price: '$11.99', period: '/month', note: '($143.88/year)' },
+]
+
+const MembershipRadioCardGroupDemo = () => {
+  const [plan, setPlan] = useState('annual')
+  const [govClicks, setGovClicks] = useState(0)
+
+  return (
+    <div className={styles['showcase__demo-stack']}>
+      <MembershipRadioCardGroup
+        plans={membershipPlans}
+        value={plan}
+        onChange={setPlan}
+        trialText="Free 30-day trial,"
+        trialSubtext="then $97/year"
+        govDiscountText="On gov assistance? Verify to get 50% off"
+        onGovDiscountClick={() => setGovClicks((count) => count + 1)}
+      />
+      <p className={styles.showcase__state}>
+        Selected: <strong>{plan}</strong> · Gov discount clicks: <strong>{govClicks}</strong>
+      </p>
+    </div>
+  )
+}
 
 const sections = [
   {
@@ -10,6 +39,16 @@ const sections = [
         <Button>Subscribe</Button>
         <Button variant="secondary">Manage plan</Button>
         <Button disabled>Disabled</Button>
+      </>
+    ),
+  },
+  {
+    title: 'MembershipRadioCardGroup',
+    level: 'Molecule',
+    render: () => (
+      <>
+        <MembershipRadioCardGroupDemo />
+        <MembershipRadioCardGroup plans={membershipPlans} defaultValue="monthly" />
       </>
     ),
   },

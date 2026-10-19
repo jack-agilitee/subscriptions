@@ -35,4 +35,14 @@
     align-items: center;
     gap: $space-3;
   }
+
+  &__demo-stack {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+    width: 100%;
+    max-width: 343px;
+  }
+
+  &__state { @include body-small; @include text-secondary; margin: 0; }
 }
