@@ -3,30 +3,48 @@ import Button from '../components/atoms/Button'
 import MembershipRadioCardGroup from '../components/molecules/MembershipRadioCardGroup'
 import styles from './Showcase.module.scss'
 
-const membershipPlans = [
-  { id: 'annual', label: 'Annual', price: '$97', period: '/year', note: 'Save $46.88', noteTone: 'highlight', badge: 'best value' },
-  { id: 'monthly', label: 'Monthly', price: '$11.99', period: '/month', note: '($143.88/year)' },
+const annualPlan = { id: 'annual', label: 'Annual', price: '$48', period: '/year' }
+const monthlyPlan = { id: 'monthly', label: 'Monthly', price: '$5.99', period: '/month' }
+
+const plansWithNotes = [
+  { ...annualPlan, note: 'Save $24.88', noteTone: 'highlight', badge: 'best value' },
+  { ...monthlyPlan, note: '($71.88/year)' },
 ]
 
-const MembershipRadioCardGroupDemo = () => {
-  const [plan, setPlan] = useState('annual')
+const plansWithSavingsBadge = [
+  { ...annualPlan, badge: 'Save $23.88' },
+  monthlyPlan,
+]
+
+const membershipExamples = [
+  { caption: 'Annual selected', plans: plansWithNotes, defaultValue: 'annual' },
+  { caption: 'Monthly selected', plans: plansWithNotes, defaultValue: 'monthly' },
+  { caption: 'Savings badge, annual selected', plans: plansWithSavingsBadge, defaultValue: 'annual' },
+  { caption: 'Savings badge, monthly selected', plans: plansWithSavingsBadge, defaultValue: 'monthly' },
+  { caption: 'With gov discount link', plans: plansWithNotes, defaultValue: 'annual', govDiscount: true },
+]
+
+const MembershipExample = ({ caption, plans, defaultValue, govDiscount }) => {
+  const [value, setValue] = useState(defaultValue)
   const [govClicks, setGovClicks] = useState(0)
+  const selectedPlan = plans.find((plan) => plan.id === value)
 
   return (
-    <div className={styles['showcase__demo-stack']}>
+    <figure className={styles.showcase__example}>
+      <figcaption className={styles['showcase__example-caption']}>
+        {caption}
+        {govDiscount && ` (clicked ${govClicks}×)`}
+      </figcaption>
       <MembershipRadioCardGroup
-        plans={membershipPlans}
-        value={plan}
-        onChange={setPlan}
+        plans={plans}
+        value={value}
+        onChange={setValue}
         trialText="Free 30-day trial,"
-        trialSubtext="then $97/year"
-        govDiscountText="On gov assistance? Verify to get 50% off"
-        onGovDiscountClick={() => setGovClicks((count) => count + 1)}
+        trialSubtext={`then ${selectedPlan.price}${selectedPlan.period}`}
+        govDiscountText={govDiscount ? 'On gov assistance? Verify to get 50% off' : undefined}
+        onGovDiscountClick={govDiscount ? () => setGovClicks((count) => count + 1) : undefined}
       />
-      <p className={styles.showcase__state}>
-        Selected: <strong>{plan}</strong> · Gov discount clicks: <strong>{govClicks}</strong>
-      </p>
-    </div>
+    </figure>
   )
 }
 
@@ -46,10 +64,11 @@ const sections = [
     title: 'MembershipRadioCardGroup',
     level: 'Molecule',
     render: () => (
-      <>
-        <MembershipRadioCardGroupDemo />
-        <MembershipRadioCardGroup plans={membershipPlans} defaultValue="monthly" />
-      </>
+      <div className={styles.showcase__examples}>
+        {membershipExamples.map((example) => (
+          <MembershipExample key={example.caption} {...example} />
+        ))}
+      </div>
     ),
   },
 ]
