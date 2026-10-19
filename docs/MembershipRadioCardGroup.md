@@ -72,4 +72,4 @@ Uncontrolled: omit `value` and optionally pass `defaultValue`. The first plan is
 
 ## Testing
 
-`MembershipRadioCardGroup.test.jsx` covers rendering, default/controlled/uncontrolled selection, `onChange`, optional trial/note/badge/link, and the gov link handler (100% coverage).
+`MembershipRadioCardGroup.test.jsx` covers rendering, default/controlled/uncontrolled selection, `onChange`, optional trial/note/badge/link, and the gov link handler.

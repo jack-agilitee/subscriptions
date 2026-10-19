@@ -28,7 +28,6 @@ npm run build       # Production build
 npm run preview     # Preview production build
 npm run test        # Run tests once
 npm run test:watch  # Run tests in watch mode
-npm run coverage    # Tests with coverage (target >90%)
 npm run lint        # Lint with oxlint
 ```
 
