@@ -20,7 +20,8 @@ const MembershipEnrollmentHeader = ({
   logoAlt = 'myDG+',
   headingLevel = 1,
 }) => {
-  const Heading = `h${headingLevel}`
+  const level = Number(headingLevel)
+  const Heading = `h${Number.isInteger(level) && level >= 1 && level <= 6 ? level : 1}`
 
   return (
     <header

@@ -34,8 +34,8 @@ Any `®` in a string `title` is rendered raised and smaller (12.9px Bold against
 | `platform` | `'appAndMobile' \| 'desktop'` | `'appAndMobile'` | Layout variant |
 | `tagline` | `string` | — | Small grey line above the title; hidden when omitted |
 | `title` | `string \| ReactNode` | required | Page title; strings get `®` styling automatically |
-| `logoAlt` | `string` | `'myDG+'` | Alt text for the logo |
-| `headingLevel` | `1–6` | `1` | Heading element used for the title |
+| `logoAlt` | `string` | `'myDG+'` | Alt text for the logo. Pass `""` to make it decorative when the title already names myDG+ (avoids screen readers announcing the brand twice) |
+| `headingLevel` | `1–6` | `1` | Heading element used for the title; invalid values fall back to `h1` |
 
 ## Assets
 

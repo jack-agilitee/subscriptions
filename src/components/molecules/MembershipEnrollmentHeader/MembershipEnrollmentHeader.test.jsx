@@ -20,6 +20,24 @@ describe('MembershipEnrollmentHeader', () => {
     expect(mark).toHaveTextContent('®')
   })
 
+  it('raises every registered mark, including at the edges', () => {
+    render(<MembershipEnrollmentHeader title="®myDG+® Plus®" />)
+    const heading = screen.getByRole('heading')
+    expect(heading.querySelectorAll('sup')).toHaveLength(3)
+    expect(heading).toHaveTextContent('®myDG+® Plus®')
+  })
+
+  it.each([0, 7, null, 'abc', 2.5])('falls back to h1 for invalid heading level %s', (headingLevel) => {
+    render(<MembershipEnrollmentHeader {...props} headingLevel={headingLevel} />)
+    expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument()
+  })
+
+  it('makes the logo decorative with an empty logoAlt', () => {
+    const { container } = render(<MembershipEnrollmentHeader {...props} logoAlt="" />)
+    expect(screen.queryByRole('img')).not.toBeInTheDocument()
+    expect(container.querySelector('img')).toHaveAttribute('alt', '')
+  })
+
   it('renders a title without a registered mark unchanged', () => {
     render(<MembershipEnrollmentHeader title="Join myDG+" />)
     const heading = screen.getByRole('heading')
