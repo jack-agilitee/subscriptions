@@ -1,0 +1,43 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.membership-enrollment-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $space-2;
+  width: 100%;
+  font-family: $font-family-base;
+  line-height: $line-height-tight;
+
+  // Only the logo centers on app/mobile; the text stays left-aligned.
+  &--appAndMobile &__logo { align-self: center; }
+
+  &__logo {
+    display: block;
+    flex-shrink: 0;
+  }
+
+  &__tagline {
+    width: 100%;
+    margin: 0;
+    font-size: $font-size-2xs;
+    font-weight: $font-weight-medium;
+    color: $color-text-muted;
+  }
+
+  &__title {
+    width: 100%;
+    margin: 0;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-black;
+    color: $color-text-primary;
+  }
+
+  // Figma sets ® at 12.9px Bold against the 20px Black title.
+  &__mark {
+    font-size: 0.645em;
+    font-weight: $font-weight-bold;
+    line-height: 0;
+  }
+}

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Button from '../components/atoms/Button'
 import MembershipEnrollmentActions from '../components/molecules/MembershipEnrollmentActions'
+import MembershipEnrollmentHeader from '../components/molecules/MembershipEnrollmentHeader'
 import MembershipRadioCardGroup from '../components/molecules/MembershipRadioCardGroup'
 import PaymentMethodTile from '../components/molecules/PaymentMethodTile'
 import styles from './Showcase.module.scss'
@@ -147,6 +148,12 @@ const PaymentMethodTileExamples = () => {
   )
 }
 
+const enrollmentHeaderProps = {
+  tagline: 'Get free delivery and tons of other discounts. Cancel anytime.',
+  title: 'Get myDG+® free for 30 days',
+  headingLevel: 3,
+}
+
 const sections = [
   {
     title: 'Button',
@@ -185,6 +192,22 @@ const sections = [
     title: 'PaymentMethodTile',
     level: 'Molecule',
     render: () => <PaymentMethodTileExamples />,
+  },
+  {
+    title: 'MembershipEnrollmentHeader',
+    level: 'Molecule',
+    render: () => (
+      <div className={styles.showcase__platforms}>
+        <figure className={styles.showcase__example}>
+          <figcaption className={styles['showcase__platform-caption']}>appAndMobile</figcaption>
+          <MembershipEnrollmentHeader {...enrollmentHeaderProps} platform="appAndMobile" />
+        </figure>
+        <figure className={styles.showcase__example}>
+          <figcaption className={styles['showcase__platform-caption']}>desktop</figcaption>
+          <MembershipEnrollmentHeader {...enrollmentHeaderProps} platform="desktop" />
+        </figure>
+      </div>
+    ),
   },
 ]
 
