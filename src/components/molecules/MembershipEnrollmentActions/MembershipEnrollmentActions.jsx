@@ -12,6 +12,7 @@ const MembershipEnrollmentActions = ({
   ctaDisabled = false,
 }) => (
   <div
+    data-platform={platform}
     className={`${styles['membership-enrollment-actions']} ${
       styles[`membership-enrollment-actions--${platform}`]
     }`}

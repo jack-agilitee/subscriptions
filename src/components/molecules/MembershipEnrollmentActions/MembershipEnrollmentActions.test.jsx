@@ -51,10 +51,10 @@ describe('MembershipEnrollmentActions', () => {
     expect(screen.getByRole('link', { name: 'Membership Terms' })).toHaveAttribute('href', '/terms')
   })
 
-  it('applies the platform modifier class', () => {
+  it('exposes the platform, defaulting to appAndMobile', () => {
     const { container, rerender } = render(<MembershipEnrollmentActions {...trialTaxed} />)
-    expect(container.firstChild.className).toMatch(/--appAndMobile/)
+    expect(container.firstChild).toHaveAttribute('data-platform', 'appAndMobile')
     rerender(<MembershipEnrollmentActions {...trialTaxed} platform="desktop" />)
-    expect(container.firstChild.className).toMatch(/--desktop/)
+    expect(container.firstChild).toHaveAttribute('data-platform', 'desktop')
   })
 })

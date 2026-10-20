@@ -74,6 +74,6 @@
 
   &__cta {
     .membership-enrollment-actions--appAndMobile & { width: 100%; }
-    .membership-enrollment-actions--desktop & { min-width: 240px; }
+    .membership-enrollment-actions--desktop & { min-width: $size-cta-min-width; }
   }
 }

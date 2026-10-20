@@ -138,15 +138,20 @@ export default Button
 @use '../../../styles/mixins' as *;
 
 .button {
-  @include button-text;
-  background: $color-primary;
+  padding: $space-2-5 $space-6;
+  border-radius: $radius-xs;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
 
-  &--secondary {
-    background: transparent;
-    border: 2px solid $color-primary;
+  &--primary {
+    background: $color-surface-inverse;
+    color: $color-text-inverse;
   }
 
-  &:hover { background: $color-primary-hover; }
+  &--secondary {
+    background: $color-surface;
+    border: 1px solid $color-surface-inverse;
+  }
 }
 ```
 
