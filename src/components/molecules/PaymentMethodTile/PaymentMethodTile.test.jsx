@@ -8,7 +8,21 @@ describe('PaymentMethodTile', () => {
     it('renders the card label and brand logo', () => {
       const { container } = render(<PaymentMethodTile paymentMethod={visa} />)
       expect(screen.getByText('Visa * 1243')).toBeInTheDocument()
-      expect(container.querySelector('img')?.getAttribute('src')).toBeTruthy()
+      const logo = container.querySelector('img')
+      expect(logo.getAttribute('src')).toBeTruthy()
+      expect(logo).toHaveAttribute('alt', '')
+      expect(screen.getByText('Visa * 1243')).toHaveAttribute('title', 'Visa * 1243')
+    })
+
+    it('matches brands case-insensitively', () => {
+      const { container } = render(<PaymentMethodTile paymentMethod={{ brand: 'VISA', label: 'Visa * 1243' }} />)
+      expect(container.querySelector('img')).toBeInTheDocument()
+    })
+
+    it.each(['constructor', 'toString', undefined, 42])('falls back to the generic icon for brand %s', (brand) => {
+      const { container } = render(<PaymentMethodTile paymentMethod={{ brand, label: 'Card * 0001' }} />)
+      expect(container.querySelector('img')).not.toBeInTheDocument()
+      expect(screen.getByText('Card * 0001')).toBeInTheDocument()
     })
 
     it('calls onEdit from an accessible edit button', () => {
@@ -46,8 +60,13 @@ describe('PaymentMethodTile', () => {
     })
 
     it('supports a custom add label', () => {
-      render(<PaymentMethodTile addLabel="Add a card" />)
-      expect(screen.getByRole('button', { name: 'Add a card' })).toBeInTheDocument()
+      render(<PaymentMethodTile addLabel="Add a card" onAdd={() => {}} />)
+      expect(screen.getByRole('button', { name: 'Add a card' })).toBeEnabled()
+    })
+
+    it('is disabled without an onAdd handler', () => {
+      render(<PaymentMethodTile />)
+      expect(screen.getByRole('button', { name: 'Add payment method' })).toBeDisabled()
     })
   })
 })

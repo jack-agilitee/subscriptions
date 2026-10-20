@@ -5,6 +5,11 @@ const brandIcons = {
   visa: visaIcon,
 }
 
+const getBrandIcon = (brand) => {
+  const key = typeof brand === 'string' ? brand.toLowerCase() : ''
+  return Object.hasOwn(brandIcons, key) ? brandIcons[key] : undefined
+}
+
 const CardGlyph = () => <span className={styles['payment-method-tile__glyph']} aria-hidden="true" />
 
 const PaymentMethodTile = ({
@@ -20,6 +25,7 @@ const PaymentMethodTile = ({
         type="button"
         className={`${styles['payment-method-tile']} ${styles['payment-method-tile--add']}`}
         onClick={onAdd}
+        disabled={!onAdd}
       >
         <CardGlyph />
         <span className={styles['payment-method-tile__add-label']}>{addLabel}</span>
@@ -28,7 +34,7 @@ const PaymentMethodTile = ({
   }
 
   const { brand, label } = paymentMethod
-  const brandIcon = brandIcons[brand?.toLowerCase()]
+  const brandIcon = getBrandIcon(brand)
 
   return (
     <div className={styles['payment-method-tile']}>
@@ -37,7 +43,7 @@ const PaymentMethodTile = ({
       ) : (
         <CardGlyph />
       )}
-      <span className={styles['payment-method-tile__label']}>{label}</span>
+      <span className={styles['payment-method-tile__label']} title={label}>{label}</span>
       {onEdit && (
         <button
           type="button"
