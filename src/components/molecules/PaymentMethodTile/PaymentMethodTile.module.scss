@@ -1,0 +1,85 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.payment-method-tile {
+  display: flex;
+  align-items: center;
+  gap: $space-4;
+  width: 100%;
+  padding: $space-4;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-tile;
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-base;
+  text-align: left;
+
+  &--add {
+    color: $color-link;
+    cursor: pointer;
+
+    &:hover .payment-method-tile__add-label { text-decoration: underline; }
+    &:focus-visible { @include focus-ring; }
+  }
+
+  &__brand {
+    flex-shrink: 0;
+    display: block;
+  }
+
+  // Generic card icon from the Figma "Payment Methods" glyph: a 3px top strip and a 10px body.
+  &__glyph {
+    position: relative;
+    flex-shrink: 0;
+    width: $size-icon;
+    height: $size-icon;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 100%;
+      background: $color-link;
+    }
+
+    &::before {
+      top: 4px;
+      height: 3px;
+      border-radius: $space-0-5 $space-0-5 0 0;
+    }
+
+    &::after {
+      top: 10px;
+      height: 10px;
+      border-radius: 0 0 $space-0-5 $space-0-5;
+    }
+  }
+
+  &__label,
+  &__add-label {
+    flex: 1 0 0;
+    min-width: 0;
+    @include truncate;
+  }
+
+  &__label { color: $color-text-primary; }
+
+  &__edit {
+    flex-shrink: 0;
+    padding: $space-0-5 0 0;
+    background: none;
+    border: 0;
+    font-family: inherit;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    line-height: $line-height-base;
+    color: $color-link;
+    cursor: pointer;
+
+    &:hover { text-decoration: underline; }
+    &:focus-visible { @include focus-ring; }
+  }
+}

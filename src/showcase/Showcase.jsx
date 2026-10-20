@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Button from '../components/atoms/Button'
 import MembershipEnrollmentActions from '../components/molecules/MembershipEnrollmentActions'
 import MembershipRadioCardGroup from '../components/molecules/MembershipRadioCardGroup'
+import PaymentMethodTile from '../components/molecules/PaymentMethodTile'
 import styles from './Showcase.module.scss'
 
 const annualPlan = { id: 'annual', label: 'Annual', price: '$48', period: '/year' }
@@ -123,6 +124,29 @@ const EnrollmentExample = ({ caption, ...props }) => {
   )
 }
 
+const PaymentMethodTileExamples = () => {
+  const [lastAction, setLastAction] = useState('none')
+
+  return (
+    <div className={styles.showcase__permutation}>
+      <p className={styles['showcase__example-caption']}>Last action: {lastAction}</p>
+      <div className={styles.showcase__tiles}>
+        <figure className={styles.showcase__example}>
+          <figcaption className={styles['showcase__platform-caption']}>Saved card</figcaption>
+          <PaymentMethodTile
+            paymentMethod={{ brand: 'visa', label: 'Visa * 1243' }}
+            onEdit={() => setLastAction('edit Visa * 1243')}
+          />
+        </figure>
+        <figure className={styles.showcase__example}>
+          <figcaption className={styles['showcase__platform-caption']}>No saved payment method</figcaption>
+          <PaymentMethodTile onAdd={() => setLastAction('add payment method')} />
+        </figure>
+      </div>
+    </div>
+  )
+}
+
 const sections = [
   {
     title: 'Button',
@@ -156,6 +180,11 @@ const sections = [
         ))}
       </div>
     ),
+  },
+  {
+    title: 'PaymentMethodTile',
+    level: 'Molecule',
+    render: () => <PaymentMethodTileExamples />,
   },
 ]
 

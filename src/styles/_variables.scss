@@ -46,7 +46,9 @@ $border-hairline: 0.33px;
 $radius-xs: 4px;                      // (Figma) radius/xs
 
 // Sizes
+$size-icon: 24px;
 $size-cta-min-width: 240px;           // (Figma) primaryCta min width, desktop
+$radius-tile: 6px;                    // (Figma) PaymentMethodTile corner (raw value, no token)
 $radius-sm: 8px;                      // (Figma) radius/sm
 $radius-md: 12px;                     // (Figma) radius/md
 $radius-lg: 16px;
