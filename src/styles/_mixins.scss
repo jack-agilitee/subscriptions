@@ -31,4 +31,4 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-@mixin focus-ring { outline: 2px solid $color-primary; outline-offset: 2px; }
+@mixin focus-ring { outline: 2px solid $color-link; outline-offset: 2px; }

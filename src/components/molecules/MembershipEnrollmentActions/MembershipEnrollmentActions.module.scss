@@ -1,0 +1,79 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+// appAndMobile is fixed to the bottom of the screen by the parent page; the
+// component itself stays in flow and excludes the OS/browser safe-area inset.
+.membership-enrollment-actions {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  width: 100%;
+  font-family: $font-family-base;
+  background: $color-surface;
+
+  &--appAndMobile {
+    align-items: center;
+    padding: $space-3 $space-4 $space-4;
+    border-top: $border-hairline solid $color-border;
+    text-align: center;
+  }
+
+  &--desktop {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  &__legal {
+    width: 100%;
+    margin: 0;
+    padding-bottom: $space-2;
+    font-size: $font-size-xs;
+    line-height: $line-height-xs;
+    color: $color-text-secondary;
+    text-align: left;
+
+    a { color: inherit; }
+  }
+
+  &__price {
+    display: flex;
+    flex-direction: column;
+    gap: $space-1;
+    width: 100%;
+    padding: $space-1 0;
+  }
+
+  &__summary {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: $space-1;
+    margin: 0;
+    font-size: $font-size-sm;
+    line-height: $line-height-base;
+
+    .membership-enrollment-actions--appAndMobile & { justify-content: center; }
+  }
+
+  &__lead-in {
+    font-weight: $font-weight-regular;
+    color: $color-text-subdued;
+  }
+
+  &__emphasis {
+    font-weight: $font-weight-medium;
+    color: $color-text-primary;
+  }
+
+  &__detail {
+    margin: 0;
+    font-size: $font-size-xs;
+    line-height: $line-height-xs;
+    color: $color-text-subdued;
+  }
+
+  &__cta {
+    .membership-enrollment-actions--appAndMobile & { width: 100%; }
+    .membership-enrollment-actions--desktop & { min-width: 240px; }
+  }
+}

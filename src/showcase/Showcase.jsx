@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Button from '../components/atoms/Button'
+import MembershipEnrollmentActions from '../components/molecules/MembershipEnrollmentActions'
 import MembershipRadioCardGroup from '../components/molecules/MembershipRadioCardGroup'
 import styles from './Showcase.module.scss'
 
@@ -48,6 +49,80 @@ const MembershipExample = ({ caption, plans, defaultValue, govDiscount }) => {
   )
 }
 
+const legalFor = (ctaLabel) => (
+  <>
+    By selecting “{ctaLabel}”, you agree to the <a href="#terms">Membership Terms</a> and{' '}
+    <a href="#privacy">Privacy Policy</a>. Cancel anytime.
+  </>
+)
+
+const trialLeadIn = 'You won’t be charged until'
+
+const enrollmentExamples = [
+  {
+    caption: '1. Trial, taxed',
+    leadIn: trialLeadIn,
+    emphasis: 'Nov 18, 2026',
+    detail: 'Then $103.79/year ($97.00 + $6.79 tax)',
+    ctaLabel: 'Start your free 30-day trial',
+  },
+  {
+    caption: '2. Trial, no tax',
+    leadIn: trialLeadIn,
+    emphasis: 'Nov 18, 2026',
+    detail: 'Then $97.00/year',
+    ctaLabel: 'Start your free 30-day trial',
+  },
+  {
+    caption: '3. Paid, taxed',
+    emphasis: '$103.79 due today',
+    detail: '$97.00 + $6.79 tax · Renews Oct 19, 2027',
+    ctaLabel: 'Enroll',
+  },
+  {
+    caption: '4. Paid, no tax',
+    emphasis: '$97.00 due today',
+    detail: 'Renews Oct 19, 2027',
+    ctaLabel: 'Enroll',
+  },
+  {
+    caption: 'No saved payment method (CTA disabled)',
+    leadIn: trialLeadIn,
+    emphasis: 'Nov 18, 2026',
+    detail: 'Then $103.79/year ($97.00 + $6.79 tax)',
+    ctaLabel: 'Start your free 30-day trial',
+    ctaDisabled: true,
+  },
+]
+
+const EnrollmentExample = ({ caption, ...props }) => {
+  const [clicks, setClicks] = useState(0)
+  const actionProps = {
+    ...props,
+    legal: legalFor(props.ctaLabel),
+    onCtaClick: () => setClicks((count) => count + 1),
+  }
+
+  return (
+    <div className={styles.showcase__permutation}>
+      <p className={styles['showcase__example-caption']}>
+        {caption}
+        {!props.ctaDisabled && ` (CTA clicked ${clicks}×)`}
+      </p>
+      <div className={styles.showcase__platforms}>
+        <figure className={styles.showcase__example}>
+          <figcaption className={styles['showcase__platform-caption']}>appAndMobile</figcaption>
+          <MembershipEnrollmentActions {...actionProps} platform="appAndMobile" />
+        </figure>
+        <figure className={styles.showcase__example}>
+          <figcaption className={styles['showcase__platform-caption']}>desktop</figcaption>
+          <MembershipEnrollmentActions {...actionProps} platform="desktop" />
+        </figure>
+      </div>
+    </div>
+  )
+}
+
 const sections = [
   {
     title: 'Button',
@@ -67,6 +142,17 @@ const sections = [
       <div className={styles.showcase__examples}>
         {membershipExamples.map((example) => (
           <MembershipExample key={example.caption} {...example} />
+        ))}
+      </div>
+    ),
+  },
+  {
+    title: 'MembershipEnrollmentActions',
+    level: 'Molecule',
+    render: () => (
+      <div className={styles.showcase__permutations}>
+        {enrollmentExamples.map((example) => (
+          <EnrollmentExample key={example.caption} {...example} />
         ))}
       </div>
     ),
