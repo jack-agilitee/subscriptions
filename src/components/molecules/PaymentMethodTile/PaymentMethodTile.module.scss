@@ -20,7 +20,8 @@
     color: $color-link;
     cursor: pointer;
 
-    &:hover .payment-method-tile__add-label { text-decoration: underline; }
+    &:hover:not(:disabled) .payment-method-tile__add-label { text-decoration: underline; }
+    &:disabled { cursor: default; }
     &:focus-visible { @include focus-ring; }
   }
 
@@ -48,13 +49,13 @@
     &::before {
       top: 4px;
       height: 3px;
-      border-radius: $space-0-5 $space-0-5 0 0;
+      border-radius: $radius-2xs $radius-2xs 0 0;
     }
 
     &::after {
       top: 10px;
       height: 10px;
-      border-radius: 0 0 $space-0-5 $space-0-5;
+      border-radius: 0 0 $radius-2xs $radius-2xs;
     }
   }
 

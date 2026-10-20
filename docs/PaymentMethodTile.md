@@ -32,9 +32,9 @@ import PaymentMethodTile from '../components/molecules/PaymentMethodTile'
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `paymentMethod` | `{ brand: string, label: string }` | — | Saved method. Omit to show the add variant |
+| `paymentMethod` | `{ brand: string, label: string }` | — | Saved method. Omit to show the add variant. `brand` is matched case-insensitively; `label` also shows as a hover title when truncated |
 | `onEdit` | `() => void` | — | Edit click handler; the edit link only renders when set |
-| `onAdd` | `() => void` | — | Add-variant click handler |
+| `onAdd` | `() => void` | — | Add-variant click handler; the tile is disabled without it |
 | `editLabel` | `string` | `'edit'` | Edit link text (accessible name is `"{editLabel} {label}"`) |
 | `addLabel` | `string` | `'Add payment method'` | Add-variant text |
 

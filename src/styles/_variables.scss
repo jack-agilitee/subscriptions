@@ -9,6 +9,7 @@ $color-border: #d4d4d4;               // (Figma) border/default
 $color-text-primary: #000000;         // (Figma) text/default/default
 $color-text-subdued: #515151;         // (Figma) text/default/subdued
 $color-text-secondary: #757575;       // (Figma) text/default/secondary
+$color-text-muted: #616161;           // (Figma) enrollment tagline (raw value, no token)
 $color-text-inverse: #ffffff;         // (Figma) text/default/negative
 $color-link: #2a77bd;                 // (Figma) text/link/default
 $color-success: #16a34a;
@@ -21,10 +22,12 @@ $font-weight-regular: 400;
 $font-weight-medium: 500;             // (Figma) font/weight/medium
 $font-weight-semibold: 600;           // (Figma) font/weight/semibold
 $font-weight-bold: 700;               // (Figma) font/weight/bold
+$font-weight-black: 900;              // (Figma) Standard/Black
 $font-size-2xs: 10px;
 $font-size-xs: 12px;                  // (Figma) font/size/xs
 $font-size-sm: 14px;                  // (Figma) font/size/sm
 $font-size-base: 16px;                // (Figma) font/size/base
+$font-size-xl: 20px;                  // (Figma) Standard/Black/20
 $line-height-tight: 1.25;
 $line-height-xs: 16px;                // (Figma) font/line-height/xs
 $line-height-base: 20px;              // (Figma) font/line-height/base
@@ -43,6 +46,7 @@ $space-8: 32px;
 
 // Borders, radius & shadow
 $border-hairline: 0.33px;
+$radius-2xs: 2px;                     // (Figma) radius/2xs
 $radius-xs: 4px;                      // (Figma) radius/xs
 
 // Sizes
