@@ -1,15 +1,15 @@
 // Values marked (Figma) mirror tokens in the Agilitee Tiger Team Figma file.
 
 // Colors
-$color-primary: #4f46e5;
-$color-primary-hover: #4338ca;
 $color-brand: #fff200;                // (Figma) surface/brand/default
 $color-surface: #ffffff;              // (Figma) surface/white/default
+$color-surface-inverse: #000000;      // (Figma) surface/black/default
 $color-background: #f6f7fb;
 $color-border: #d4d4d4;               // (Figma) border/default
 $color-text-primary: #000000;         // (Figma) text/default/default
 $color-text-subdued: #515151;         // (Figma) text/default/subdued
 $color-text-secondary: #757575;       // (Figma) text/default/secondary
+$color-text-inverse: #ffffff;         // (Figma) text/default/negative
 $color-link: #2a77bd;                 // (Figma) text/link/default
 $color-success: #16a34a;
 $color-warning: #d97706;
@@ -24,21 +24,29 @@ $font-weight-bold: 700;               // (Figma) font/weight/bold
 $font-size-2xs: 10px;
 $font-size-xs: 12px;                  // (Figma) font/size/xs
 $font-size-sm: 14px;                  // (Figma) font/size/sm
+$font-size-base: 16px;                // (Figma) font/size/base
 $line-height-tight: 1.25;
 $line-height-xs: 16px;                // (Figma) font/line-height/xs
 $line-height-base: 20px;              // (Figma) font/line-height/base
+$line-height-lg: 24px;                // (Figma) font/line-height/lg
 
 // Spacing
 $space-0-5: 2px;
 $space-1: 4px;                        // (Figma) spacing/4
 $space-1-5: 6px;                      // (Figma) spacing/6
 $space-2: 8px;                        // (Figma) spacing/8
+$space-2-5: 10px;                     // (Figma) spacing/10
 $space-3: 12px;
-$space-4: 16px;
+$space-4: 16px;                       // (Figma) spacing/16
 $space-6: 24px;
 $space-8: 32px;
 
-// Radius & shadow
+// Borders, radius & shadow
+$border-hairline: 0.33px;
+$radius-xs: 4px;                      // (Figma) radius/xs
+
+// Sizes
+$size-cta-min-width: 240px;           // (Figma) primaryCta min width, desktop
 $radius-sm: 8px;                      // (Figma) radius/sm
 $radius-md: 12px;                     // (Figma) radius/md
 $radius-lg: 16px;

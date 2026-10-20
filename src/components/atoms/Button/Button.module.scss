@@ -1,28 +1,45 @@
+@use 'sass:color';
 @use '../../../styles/variables' as *;
 @use '../../../styles/mixins' as *;
 
+// Primary matches the Figma primaryCta (MembershipEnrollmentActions).
 .button {
-  @include button-text;
-  padding: $space-3 $space-4;
-  border: 2px solid $color-primary;
-  border-radius: $radius-sm;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  padding: $space-2-5 $line-height-lg;
+  border: 1px solid transparent;
+  border-radius: $radius-xs;
+  font-family: inherit;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-base;
+  text-align: center;
   cursor: pointer;
-  transition: background 0.15s, color 0.15s;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
 
   &:focus-visible { @include focus-ring; }
-  &:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  &:disabled {
+    background: $color-border;
+    border-color: $color-border;
+    color: $color-text-secondary;
+    cursor: not-allowed;
+  }
 
   &--primary {
-    background: $color-primary;
-    color: $color-surface;
+    background: $color-surface-inverse;
+    color: $color-text-inverse;
 
-    &:hover:not(:disabled) { background: $color-primary-hover; border-color: $color-primary-hover; }
+    &:hover:not(:disabled) { background: color.mix($color-surface-inverse, $color-surface, 80%); }
   }
 
   &--secondary {
-    background: transparent;
-    color: $color-primary;
+    background: $color-surface;
+    border-color: $color-surface-inverse;
+    color: $color-text-primary;
 
-    &:hover:not(:disabled) { background: $color-primary; color: $color-surface; }
+    &:hover:not(:disabled) { background: $color-background; }
   }
 }
