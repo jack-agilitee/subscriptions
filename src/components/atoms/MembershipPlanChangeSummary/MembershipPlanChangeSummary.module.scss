@@ -1,0 +1,19 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+// Fills the parent's width and hugs its height (annual / switching wraps to 3 lines at 343px).
+.membership-plan-change-summary {
+  width: 100%;
+  margin: 0;
+  padding: $space-2;
+  border-radius: $radius-sm;
+  background: $color-surface-secondary;
+  font-family: $font-family-base;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-xs;
+  overflow-wrap: break-word;
+  @include text-primary;
+
+  &__date { @include font-semibold; }
+}

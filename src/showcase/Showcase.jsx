@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Button from '../components/atoms/Button'
+import MembershipPlanChangeSummary from '../components/atoms/MembershipPlanChangeSummary'
 import MembershipEnrollmentActions from '../components/molecules/MembershipEnrollmentActions'
 import MembershipEnrollmentHeader from '../components/molecules/MembershipEnrollmentHeader'
 import MembershipRadioCardGroup from '../components/molecules/MembershipRadioCardGroup'
@@ -154,6 +155,12 @@ const enrollmentHeaderProps = {
   headingLevel: 3,
 }
 
+const planChangeSummaryData = { renewalDate: 'Nov 18, 2026', savings: '$23.88' }
+
+const planChangeSummaryExamples = ['current', 'switching', 'keeping'].flatMap((mode) =>
+  ['monthly', 'annual'].map((selectedPlan) => ({ selectedPlan, mode })),
+)
+
 const sections = [
   {
     title: 'Button',
@@ -164,6 +171,22 @@ const sections = [
         <Button variant="secondary">Manage plan</Button>
         <Button disabled>Disabled</Button>
       </>
+    ),
+  },
+  {
+    title: 'MembershipPlanChangeSummary',
+    level: 'Atom',
+    render: () => (
+      <div className={styles.showcase__examples}>
+        {planChangeSummaryExamples.map(({ selectedPlan, mode }) => (
+          <figure key={`${selectedPlan}-${mode}`} className={styles.showcase__example}>
+            <figcaption className={styles['showcase__example-caption']}>
+              {selectedPlan} / {mode}
+            </figcaption>
+            <MembershipPlanChangeSummary {...planChangeSummaryData} selectedPlan={selectedPlan} mode={mode} />
+          </figure>
+        ))}
+      </div>
     ),
   },
   {
